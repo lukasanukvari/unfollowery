@@ -1,9 +1,7 @@
-from time import sleep
-import time
-import os
 from stats_bot import InstaBot, sleepTime
-from utils.set_chrome import driver
 from datetime import datetime
+from time import sleep
+import os
 
 class SmarterBot(InstaBot):
     """
@@ -19,7 +17,7 @@ class SmarterBot(InstaBot):
         driver:Selenium.webdriver.Chrome:
             The driver of Chrome to automate its actions.
     """
-    def __init__(self, username, password,):
+    def __init__(self, username, password):
         super().__init__(username, password)
         sleep(sleepTime)
         self.driver.get(f'https://www.instagram.com/{username}/')
@@ -92,4 +90,4 @@ class SmarterBot(InstaBot):
             fileUnflwr.write(f'STATS CHECKED: {dateChecked}\n\n')
 
 if __name__ == '__main__':
-    mainBot = SmarterBot('USERNAME', 'PASSWORD',)
+    mainBot = SmarterBot('USERNAME', 'PASSWORD')
