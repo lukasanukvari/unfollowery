@@ -10,7 +10,7 @@ This bot may fail due to updates on Instagram’s website. If you encounter any 
 1. Make sure you have Chrome browser installed. Also, check your Chrome version from *chrome://version/*
 2. Download [Chromedriver](https://chromedriver.chromium.org/downloads) and put it into utils folder: `./utils/chromedriver`
 3. Install Selenium: `pip3 install -r requirements.txt`
-4. Replace words *USERNAME* and *PASSWORD* in line 95 of `main_bot.py` with the real ones (program needs to log in to work properly).
+4. Replace words *USERNAME* and *PASSWORD* in line 93 of `main_bot.py` with the real ones (program needs to log in to work properly).
 ```python
 mainBot = SmarterBot('USERNAME', 'PASSWORD',)
 ```
