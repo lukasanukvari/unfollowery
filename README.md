@@ -41,6 +41,7 @@ N = 1
 ```
 
 If you would like to, you could automate running this script with Windows Task Scheduler too.
+
 **NOTE:** *If you tend to use Windows Task Scheduler use `main.py` instead of `runscheduler.py`*  
 
 ### Scheduling a Python Script with Task Scheduler
