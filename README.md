@@ -1,6 +1,6 @@
 # InstaUnfollowers
 
-📷 Instagram bot for Windows 10:
+📷 Instagram bot for Windows:
 - Get the list of the Instagram users that unfollowed you, without using Instagram API.
 
 This bot may fail due to updates on Instagram’s website. If you encounter any problems, please contact me.
