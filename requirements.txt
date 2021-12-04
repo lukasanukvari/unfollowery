@@ -1,3 +1,0 @@
-selenium==3.141.0
-schedule==1.1.0
-chromedriver-autoinstaller @ git+https://github.com/yeongbin-jo/python-chromedriver-autoinstaller.git@debe35fd4f830e61653140147b2b0a31d25c555c
