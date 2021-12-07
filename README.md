@@ -33,13 +33,13 @@ followers = user.unfollowers()
 unfollowers = user.unfollowers()
 ```
 
-- Get _dict `{[DATE]: [list(USERNAMES)]}`_ of all time unfollowers since the first check:
+- Get _dict {[DATE]: [list(USERNAMES)]}_ of all time unfollowers since the first check:
 
 ```python
 all_time_unfollowers = user.unfollowery()
 ```
 
-- Get unfollowers _dict `{[DATE]: [list(USERNAMES)}`_ from the specific date check:
+- Get unfollowers _dict {[DATE]: [list(USERNAMES)}_ from the specific date check:
 
 ```python
 unfollowers_by_date = user.unfollowery(datekey='yyyymmdd')
@@ -76,7 +76,7 @@ However, one can give it a date `yyyymmdd` argument as written above in the [Exa
 
 ### Keep in Mind
 
-This bot may fail due to the updates on Instagram’s website, since it is crawler-based _(Selenium)_ package, so if you encounter any problems, please open an issue or contact me.
+This methods may fail due to the updates on Instagram’s website, since it is crawler-based _(Selenium)_ package, so if you encounter any problems, please open an issue or contact me.
 
 ## Contributing
 
