@@ -14,6 +14,8 @@ Import the package and create `Profile` class instance:
 
 ```python
 from unfollowery import Profile
+
+
 # Obviously change USERNAME and
 # PASSWORD with the real ones...
 user = Profile(username='USERNAME', password='PASSWORD')
