@@ -12,8 +12,8 @@ from unfollowery.__cfg import get_driver
 
 class Profile:
     """
-    UnfollowersBot class is for getting usernames of unfollowers.
-    * Unfollowers - The people, who has unfollowed the user.
+    Profile class is for getting usernames of followers and unfollowers.
+    * Unfollowers - The people, who have unfollowed the user.
 
     Args:
         username (str): The user's username string
@@ -22,7 +22,7 @@ class Profile:
                             most of the Chromedriver actions
                             Recommended value: 5.0
                             (to not get caught by Instagram's algorithm)
-        logs (bool): If True displays Selenium Chromedriver logs
+        logs (bool): If True it will display Selenium Chromedriver logs
 
     Attributes:
         username (str): The user's username
@@ -45,7 +45,7 @@ class Profile:
                  password: str,
                  sleep_time: float = 5.0,
                  logs: bool = False):
-        """[Unfollowery class constructor].
+        """[Profile class constructor].
 
         Params:
             username (str):
@@ -55,6 +55,9 @@ class Profile:
             sleep_time (float):
                 Seconds to wait between most of the actions
                 (to not get caught by Instagram's algorithm)
+            logs (bool):
+                Display/Do not display Selenium Chromedriver logs
+            
         """
         self.username = username
         self.password = password
@@ -125,7 +128,6 @@ class Profile:
         Returns:
             webdriver.Chrome: Chromedriver object
         """
-
         # Log in...
         driver = get_driver(self.__logs)
 
@@ -169,7 +171,7 @@ class Profile:
         sleep(self.__sleep_random(self.sleep))
 
         # Find the follower count
-        flwer_x = '//section/ul/li[2]/a/span'
+        flwer_x = '//section/ul/li[2]/a/div/span'
         count_flwr = driver.find_element(by=By.XPATH, value=flwer_x)
         count_flwr = count_flwr.get_attribute('title')
 
@@ -213,11 +215,11 @@ class Profile:
             'Username': f_list,
             'IGProfile': ig_profiles
         })
-        df.to_csv('latest_followers.csv', index=False)
+        df.to_csv(f'{self.username}_latest_followers.csv', index=False)
 
-        # Create (for future uses) "unfollowery.csv" file if it doesn't exists
+        # Create (for future uses) "[USERNAME]_unfollowery.csv" file if it doesn't exists
         unfollowery_file = os.path.join(
-            os.path.abspath(os.getcwd()), 'unfollowery.csv')
+            os.path.abspath(os.getcwd()), f'{self.username}_unfollowery.csv')
         if not os.path.exists(unfollowery_file):
             unfollowery_template = pd.DataFrame({
                 'Username': [],
@@ -242,9 +244,9 @@ class Profile:
         """
         today = self.__datetime_form()
 
-        # Read the "latest_followers.csv" file.
+        # Read the "[USERNAME_latest_followers.csv" file.
         previous_followers_file = os.path.join(
-            os.path.abspath(os.getcwd()), 'latest_followers.csv')
+            os.path.abspath(os.getcwd()), f'{self.username}_latest_followers.csv')
         old_followers = pd.read_csv(previous_followers_file)
         old_followers = set(old_followers['Username'].values.tolist())
 
@@ -264,9 +266,9 @@ class Profile:
             'Checked': today
         })
 
-        # Append the DataFrame to "unfollowery.csv"
+        # Append the DataFrame to "[USERNAME]_unfollowery.csv"
         unfollowery_file = os.path.join(
-            os.path.abspath(os.getcwd()), 'unfollowery.csv')
+            os.path.abspath(os.getcwd()), f'{self.username}_unfollowery.csv')
         df.to_csv(unfollowery_file, mode='a', header=False, index=False)
 
         return list(unfollowers)
@@ -282,7 +284,7 @@ class Profile:
              dict: dictionary[date] = list of unfollowers checked on date
         """
         unfollowery_file = os.path.join(
-            os.path.abspath(os.getcwd()), 'unfollowery.csv')
+            os.path.abspath(os.getcwd()), f'{self.username}_unfollowery.csv')
         if not os.path.exists(unfollowery_file):
             raise FileNotFoundError('Could not find "unfollowers.csv"')
 
@@ -291,14 +293,14 @@ class Profile:
 
         # Get all time data (unfollowers)
         if datekey is None:
-            dt_available = unfollowers.Checked.unique()
+            dt_available = unfopyhllowers.Checked.unique()
 
             for dt_value in dt_available:
                 filtered = unfollowers.loc[unfollowers['Checked'] == dt_value]
                 unfollowery[dt_value] = filtered['Username'].values.tolist()
 
             if bool(unfollowery):
-                print(f'File "unfollowery.csv" is empty...')
+                print(f'File "{self.username}_unfollowery.csv" is empty...')
                 return
         # Get only unfollowers, that were checked on "dt"
         else:

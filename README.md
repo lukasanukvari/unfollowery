@@ -18,13 +18,13 @@ from unfollowery import Profile
 
 # Obviously change USERNAME and
 # PASSWORD with the real ones...
-user = Profile(username='USERNAME', password='PASSWORD')
+user = Profile(username='USERNAME', password='PASSWORD)
 ```
 
 - Get the list of current followers:
 
 ```python
-followers = user.unfollowers()
+followers = user.followers()
 ```
 
 - Get the list of unfollowers since the last check:
@@ -49,23 +49,23 @@ _RECOMMENDED: Place your Instagram USERNAME and PASSWORD in the file (probably J
 
 ### Class: `Profile`
 
-Please see [Examples](#Examples) for initializing Instagram user's `unfollowery.Profile` class object.
+Please see [Examples](#Examples) for initializing Instagram user's `Profile` class object.
 
 #### Parameters:
 
 - `username` _(str)_ : User's Instagram username
-- `password` _(str)_ : User's Instagram password
+- `password` _(str)_ : The user's password string
 - `sleep_time` _(float) - optional_ : Adjust waiting time (seconds) between some of the actions. It will still get randomized (_~sleep_time_). _Default value = 5_
 - `logs` _(bool) - optional_ : If set to True, _Selenium_ and _Chromedriver_ logs will be displayed in the terminal. _Default value = False_
 
 ### Methods: `followers()` VS `unfollowers()`
 
-The method `unfollowers()` **WILL NOT** return any usernames if `last_followers.csv` file does not exists.
-If it exists `unfollowers()` will compare the usernames from `last_followers.csv` to the current followers, updates (appends) `unfollowery.csv` and updates (overwrites) `last_followers.csv`.
+The method `unfollowers()` **WILL NOT** return any usernames if `[USERNAME]_latest_followers.csv` file does not exists.
+If it exists `unfollowers()` will compare the usernames from `[USERNAME]_latest_followers.csv` to the current followers, updates (appends) `[USERNAME]_unfollowery.csv` and updates (overwrites) `[USERNAME]_latest_followers.csv`.
 
 However, `followers()` **WILL ALWAYS** return the list of the current Instagram followers.
 
-Either one of them will create **(IF THE FILES DO NOT EXIST)** both `last_followers.csv` - the list of the current followers and `unfollowery.csv` - the empty file to be filled (in the future) with the users that have unfollowed you.
+Either one of them will create **(IF THE FILES DO NOT EXIST)** both `[USERNAME]_latest_followers.csv` - the list of the current followers and `[USERNAME]_unfollowery.csv` - the empty file to be filled (in the future) with the users that have unfollowed you.
 
 _NOTE: The more followers the user has, the more time `followers()` and `unfollowers()` methods take to work._
 
