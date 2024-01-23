@@ -18,7 +18,7 @@ from unfollowery import Profile
 
 # Obviously change USERNAME and
 # PASSWORD with the real ones...
-user = Profile(username='USERNAME', password='PASSWORD)
+user = Profile(username='USERNAME', password='PASSWORD')
 ```
 
 - Get the list of current followers:
